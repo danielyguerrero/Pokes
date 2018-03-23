@@ -2,29 +2,41 @@ from __future__ import unicode_literals
 from ..login.models import User
 from django.db import models
 
-
-
 #=======================================================================
 #                     PokeManager
 #=======================================================================
 
 class PokeManager(models.Manager):
-	def Poke(self, id, cur_id):
-		try: #TRY
-			userToPoke = User.objects.get(id=id)  # all users
-			cur_User = User.objects.get(id=cur_id) # current user
-			Poke.objects.create(poker=cur_User, poked=UserToPoke)
-		except: #EXCEPT
-			print "No user with id {}". format(id)
+
+	def userAddPoke(self, id, cur_id):
+
+
+	#user to poke (all users) check for their id
+		userToPoke = User.objects.get(id=id)  
+
+	# the current user 
+		cur_User = User.objects.get(id=cur_id) 
+
+	#creating a poke with the poker id and poked id
+		poke = Poke.objects.create(poker=cur_User, poked=userToPoke)
+		
+		print poke
+# if the id is not valid dispaly this
+
 
 #=======================================================================
 #                     Poke Class
 #=======================================================================
+
 class Poke(models.Model):
 
-#made two foreign keys becuase i want the functionality to be separate from the login app
+# User being poked with realted name pokes gotten
 	poked = models.ForeignKey(User, related_name="pokes_gotten")
+
+#User poking with realted name pokes made to other users
 	poker = models.ForeignKey(User, related_name="pokes_made")
+
 	created_at = models.DateTimeField(auto_now_add=True)
 
-	objects =PokeManager
+	objects = PokeManager()
+

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
-from ..login.models import User
+from ..login.models import *
 from .models import Poke
 from django.db.models import Count
 
@@ -20,18 +20,21 @@ def index(request):
     if not 'user_id' in request.session:
         return redirect(reverse("landing"))
 
-    cur_id = request.session['user_id'] 
+    cur_id = request.session['user_id']  # current user id
 
-    cur_User = User.objects.get(id=cur_id)  #current user
+    cur_user = User.objects.get(id=cur_id)  #current user
 
-    otherUsers = User.objects.exclude(id=cur_id)
+    other_users = User.objects.exclude(id=cur_id)  #other users
 
-    poked_by = cur_User.pokes_gotten.all().values("poker__name").annotate(Count('id')).order_by('-id__count')
+    poked_by = cur_user.pokes_gotten.all().values("poker__name").annotate(Count('id')).order_by('-id__count')
+
+    count = poked_by.count()
 
     context = {
-        'cur_User': cur_User,
-        'otherUsers': otherUsers,
-        'poked_by': poked_by
+        'cur_user': cur_user,
+        'other_users': other_users,
+        'poked_by': poked_by,
+        'count': count,
     }
     return render(request, 'pokes/index.html', context)
 
@@ -39,16 +42,14 @@ def index(request):
 # 						PROCESS
 # =================================================
 
-def poke(request, id):
+def addPoke(request, user_id):
 
     if 'user_id' in request.session:
 
-        cur_id = request.session['user_id']
-
-        Poke.objects.Poke(id, cur_id)
-        Poke.objects.poked()
+        Poke.objects.userAddPoke(user_id, request.session['user_id'])
 
         return redirect(reverse("dashboard"))
 
     return redirect(reverse("landing"))
+
 

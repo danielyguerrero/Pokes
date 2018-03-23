@@ -1,0 +1,23 @@
+.wrapper{
+	height: 600px;
+	width: 700px;
+	background-color: #d0d0d0;
+}
+.topp{
+	text-align: right;
+	padding-right: 20px;
+	height: 50px;
+	font-size: 20px
+}
+
+h2{
+	text-align: center;
+}
+.topdiv{
+	margin-left: 73px;
+	color:red;
+}
+
+.people{
+	margin-left: 40px;
+}
