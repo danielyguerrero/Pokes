@@ -1,6 +1,6 @@
 .wrapper{
-	height: 600px;
-	width: 700px;
+	height: auto;
+	width: auto;
 	background-color: #d0d0d0;
 }
 .topp{
@@ -18,6 +18,13 @@ h2{
 	color:red;
 }
 
-.people{
-	margin-left: 40px;
+table{
+	margin-right: auto;
+	margin-left: auto;
+	height: auto;
+	width: auto;
+
+}
+th td {
+	text-align: center;
 }

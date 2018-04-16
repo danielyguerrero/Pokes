@@ -1,0 +1,22 @@
+body {
+	background-color: #cbcbcb;
+	text-align: center;
+	height: auto;
+	width: auto;
+}
+.wrapper{
+	height: auto;
+	width: auto;
+}
+.topform{
+	height: auto;
+	width: auto;
+	display: inline-block;
+
+}
+.btform{
+	height: auto;
+	width: auto;
+	display: inline-block;
+	vertical-align: top;
+}
