@@ -3,29 +3,47 @@
 <html>
 <head>
     <title>Pokes</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+     <!-- Bootstrap -->
+          <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{% static 'pokes/css/index.css' %}" charset="utf-8"  />
 </head>
 <body>
     <div class="wrapper">
-        <p class="topp">
-            <a href="{% url 'logout' %}">Log out</a>
-        </p>
+<!-- =================================     NAVBAR       ========================================= -->
+<div class="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand"><h1>Welcome, {{ cur_user.name }}!</h1></a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
+            </ul>
+        </div>
+    </nav> 
+    <div class="topdiv">
 
-        <h2>Welcome, {{ cur_user.name }}!</h2>
+        <div class="topleft">
+            <p>{{ count }} people have poked you</p>
 
-        <div class="topdiv">
+                {% for user in poked_by%}
 
-        <p>{{ count }} people have poked you</p>
+                    <p>* {{user.poker__name}} poked you {{user.id__count}} times</p>
 
-            {% for user in poked_by%}
-
-            <p>* {{user.poker__name}} poked you {{user.id__count}} times</p>
-
-            {%endfor%}
+                {%endfor%}
+            
         </div>
 
+         <img src="/static/pokes/img/poke.png" height="200" width="200"/ >
+    </div>
         <br>
         <br>
         <!-- =================  Table  ========================== -->

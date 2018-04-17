@@ -1,6 +1,7 @@
 .wrapper{
 	height: auto;
 	width: auto;
+	padding-top: 35px;
 	background-color: #d0d0d0;
 }
 .topp{
@@ -9,15 +10,29 @@
 	height: 50px;
 	font-size: 20px
 }
-
+h1 {
+	margin:0;
+}
 h2{
 	text-align: center;
 }
 .topdiv{
+
 	margin-left: 73px;
 	color:red;
 }
+.topleft{
+	display: inline-block;
+}
 
+img{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 300px;
+	border:1px solid black;
+	box-shadow: 8px 8px 10px #aaa;
+	border-radius: 10px;
+}
 table{
 	margin-right: auto;
 	margin-left: auto;
